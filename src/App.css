@@ -1,0 +1,5 @@
+header {
+  position: sticky !important;
+  z-index: 2;
+  top: 0px;
+}

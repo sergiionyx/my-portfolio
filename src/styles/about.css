@@ -1,0 +1,37 @@
+.nav-barr {
+  z-index: 99999;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 132, 255, 0.577);
+}
+
+.link-decor {
+  padding: 1em;
+  font-weight: bold;
+  text-decoration: none !important;
+  color: aliceblue;
+  font-size: 1.6em;
+}
+
+#img-skills {
+  /* height: 30vw; */
+  width: 50vw;
+}
+#about-h1 {
+  text-align: center;
+  margin: 1vw;
+}
+
+header {
+  position: sticky !important;
+}
+
+img {
+    z-index: -1;
+}
+
+footer {
+  position: fixed;
+  bottom: -150px;
+  width:100%;
+}
