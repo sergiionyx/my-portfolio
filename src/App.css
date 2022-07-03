@@ -1,5 +1,6 @@
 header {
-  position: sticky !important;
+  /* position: sticky !important; */
   z-index: 2;
   top: 0px;
+  margin-bottom: 50px;
 }

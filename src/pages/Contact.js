@@ -45,7 +45,7 @@ function Contact() {
 
   return (
     <section id="contact">
-      <h1 data-testid="h1tag" className="section-header">
+      <h1 id="h1tag" className="section-header">
         Contact me
       </h1>
       <div className="contact-wrapper">

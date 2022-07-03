@@ -13,11 +13,14 @@
 .section-header {
   text-align: center;
   margin: 0 auto;
-  padding: 40px 0;
-  font: 300 60px "Oswald", sans-serif;
+  /* font: 300 60px "Oswald", sans-serif; */
   color: #fff;
-  text-transform: uppercase;
   letter-spacing: 6px;
+}
+
+#h1tag {
+  color: #000 !important;
+
 }
 
 .contact-wrapper {
