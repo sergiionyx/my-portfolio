@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6d4b5947.css",
+    "main.js": "/static/js/main.c848639a.js",
+    "static/js/787.128fc6e9.chunk.js": "/static/js/787.128fc6e9.chunk.js",
+    "static/media/national-park-picker_.png": "/static/media/national-park-picker_.4f4c64420563c52f897a.png",
+    "static/media/full-stack-skills.png": "/static/media/full-stack-skills.e03c14b4d7da4f7b8be0.png",
+    "static/media/nerd-blog.png": "/static/media/nerd-blog.b06e38aa0aac6ec9d950.png",
+    "static/media/personal-accounter.png": "/static/media/personal-accounter.6e0abba421c2c3966a4b.png",
+    "static/media/Sergii-Onyshchenko-Resume.pdf": "/static/media/Sergii-Onyshchenko-Resume.d4fc5f0b6b0366b86f96.pdf",
+    "static/media/note-tacker.png": "/static/media/note-tacker.621027fa302cd66fb1a6.png",
+    "index.html": "/index.html",
+    "main.6d4b5947.css.map": "/static/css/main.6d4b5947.css.map",
+    "main.c848639a.js.map": "/static/js/main.c848639a.js.map",
+    "787.128fc6e9.chunk.js.map": "/static/js/787.128fc6e9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6d4b5947.css",
+    "static/js/main.c848639a.js"
+  ]
+}
