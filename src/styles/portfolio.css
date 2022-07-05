@@ -286,6 +286,17 @@ p {
     flex-flow: column;
     perspective: none;
   }
+
+  .link-decor {
+    font-size: 0.8em;
+    padding: 3px;
+  }
+
+  footer {
+    font-size: 1em !important;
+  }
+
+
 }
 
 @media (max-width: 540px) {
@@ -300,6 +311,12 @@ p {
     padding-bottom: 8px;
     font-size: 18px;
   }
+
+  .nav-barr {
+    display: block;
+  }
+
+
 }
 
 @media (max-width: 860px) and (max-height: 540px) {

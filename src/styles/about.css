@@ -15,6 +15,7 @@
 
 #img-skills {
   /* height: 30vw; */
+  padding: 25px;
   width: 50vw;
 }
 #about-h1 {
@@ -22,19 +23,20 @@
   margin: 1.5vw;
 }
 
+
+
 img {
-  z-index: -1;
+    z-index: -1;
 }
 
-footer {
-  position: fixed;
-  bottom: -150px;
-  width: 100%;
-}
+
 
 .text-div {
-  text-align: justify;
-  font-size: 4.3vw;
+    text-align: justify;
+    font-size: 4.3vw;
+
+  
+
 }
 .text-div:after {
   content: "";

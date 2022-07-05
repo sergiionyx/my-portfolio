@@ -10,18 +10,18 @@ import Resume from "./pages/Resume";
 
 function App() {
   return (
-    <div>
+    <div className="main-div">
       <Router>
         
           <Header />
-          <div>
+          {/* <div> */}
             <Routes>
               <Route path="/my-portfolio/" element={<About />} />
               <Route path="/my-portfolio/portfolio" element={<Portfolio />} />
               <Route path="/my-portfolio/contact" element={<Contact />} />
               <Route path="/my-portfolio/resume" element={<Resume />} />
             </Routes>
-          </div>
+          {/* </div> */}
           <Footer/>
 
       </Router>

@@ -108,30 +108,29 @@ function Contact() {
         <div className="direct-contact-container">
           <ul className="contact-list contact-text">
             <li className="list-item">
-              <FaMapMarkerAlt/>
-                <span className=" place">Charlotte, NC</span>
+              <FaMapMarkerAlt />
+              <span className=" place">Charlotte, NC</span>
             </li>
 
             <li className="list-item">
-              <MdPhonelinkRing/>
-                <span className=" phone">
-                  <a href="tel:1-980-254-1990" title="Give me a call">
-                    (980) 254-1990
-                  </a>
-                </span>
-
+              <MdPhonelinkRing />
+              <span className=" phone">
+                <a href="tel:1-980-254-1990" title="Give me a call">
+                  (980) 254-1990
+                </a>
+              </span>
             </li>
 
             <li className="list-item">
-              <AiOutlineMail/>
-                <span className=" gmail">
-                  <a
-                    href="mailto:onyshchenkosergii@gmail.com"
-                    title="Send me an email"
-                  >
-                    onyshchenkosergii@gmail.com
-                  </a>
-                </span>
+              <AiOutlineMail />
+              <span className=" gmail">
+                <a
+                  href="mailto:onyshchenkosergii@gmail.com"
+                  title="Send me an email"
+                >
+                  onyshchenkosergii@gmail.com
+                </a>
+              </span>
             </li>
           </ul>
 
