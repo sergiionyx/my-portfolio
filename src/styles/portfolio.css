@@ -316,7 +316,16 @@ p {
     display: block;
   }
 
+  #img-skills {
+    /* height: 30vw; */
+    padding: 0px;
+    
+    width: 100%;
+  }
 
+  header {
+    margin-bottom: 10px;
+  }
 }
 
 @media (max-width: 860px) and (max-height: 540px) {

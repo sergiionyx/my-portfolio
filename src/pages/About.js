@@ -15,14 +15,14 @@ const About = () => {
             in being the Full Stack Developer. With my skills and background, I
             am confident that I will quickly surpass your expectations for this
             role.
-            <br></br>&nbsp;&nbsp;During education in bootcamp of the University
-            of North Carolina at Charlotte(UNC) I have been developing web
+            <br></br>&nbsp;&nbsp;During education in bootcamp of the <b>University
+            of North Carolina at Charlotte(UNC)</b> I have been developing web
             applications using all neccessary knowledges, skills and tools to
             create quality and complete product.
-            <br></br>&nbsp;&nbsp;&nbsp;&nbsp;I have advanced proficiencies in
-            HTML, CSS, JavaScript, excellent skills in React and am familiar
-            with Git, npm, Jest, Webpack. I also have a solid foundation in
-            SQLite, MySQL, MongoDB, Mongoose, Express and Node.JS. In addition
+            <br></br>&nbsp;&nbsp;&nbsp;&nbsp;I have advanced proficiencies in 
+            <b> HTML, CSS, JavaScript</b>, excellent skills in <b>React</b> and am familiar
+            with <b>Git, npm, Jest, Webpack</b>. I also have a solid foundation in
+            <b> SQLite, MySQL, MongoDB, Mongoose, Express and Node.JS</b>. In addition
             to year of work experience, I hold a Certificate of comleted course
             of Full Stack Web Developer from the UNC of Charlotte.
             <br></br>&nbsp;&nbsp;&nbsp;My excellent work ethic has provided me

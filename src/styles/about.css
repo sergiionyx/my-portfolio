@@ -1,4 +1,5 @@
 .nav-barr {
+  height: 5em;
   z-index: 99999;
   display: flex;
   justify-content: space-between;
@@ -11,6 +12,7 @@
   text-decoration: none !important;
   color: aliceblue;
   font-size: 1.6em;
+  border-color: brown;
 }
 
 #img-skills {
@@ -34,9 +36,6 @@ img {
 .text-div {
     text-align: justify;
     font-size: 4.3vw;
-
-  
-
 }
 .text-div:after {
   content: "";
