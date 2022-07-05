@@ -39,6 +39,7 @@
   max-width: 400px;
   font-family: "Lato";
   font-weight: 400;
+  width: 100%;
 }
 
 .form-control,
@@ -52,13 +53,13 @@ textarea {
 .send-button {
   margin-top: 15px;
   height: 34px;
-  width: 400px;
+  width: 100%;
   overflow: hidden;
   transition: all 0.2s ease-in-out;
 }
 
+
 .alt-send-button {
-  width: 400px;
   height: 34px;
   transition: all 0.2s ease-in-out;
 }
@@ -83,7 +84,6 @@ textarea {
 .contact-list {
   list-style-type: none;
   margin-left: -30px;
-  padding-right: 20px;
 }
 
 .list-item {
@@ -246,12 +246,17 @@ hr {
     height: 55px;
     width: 55px;
     line-height: 55px;
-    font-size: 2rem;
+    font-size: 1rem;
   }
   .social-media-list li:after {
     width: 55px;
     height: 55px;
     line-height: 55px;
+  }
+
+  .contact-text {
+    font: 300 10px "Lato", sans-serif;
+    letter-spacing: 1px;
   }
 }
 
