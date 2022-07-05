@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/my-portfolio/static/css/main.157581f7.css",
+    "main.css": "/my-portfolio/static/css/main.e98e72ca.css",
     "main.js": "/my-portfolio/static/js/main.ad855457.js",
     "static/js/787.128fc6e9.chunk.js": "/my-portfolio/static/js/787.128fc6e9.chunk.js",
     "static/media/national-park-picker_.png": "/my-portfolio/static/media/national-park-picker_.4f4c64420563c52f897a.png",
@@ -11,12 +11,12 @@
     "static/media/Sergii-Onyshchenko-Resume.pdf": "/my-portfolio/static/media/Sergii-Onyshchenko-Resume.d4fc5f0b6b0366b86f96.pdf",
     "static/media/note-tacker.png": "/my-portfolio/static/media/note-tacker.621027fa302cd66fb1a6.png",
     "index.html": "/my-portfolio/index.html",
-    "main.157581f7.css.map": "/my-portfolio/static/css/main.157581f7.css.map",
+    "main.e98e72ca.css.map": "/my-portfolio/static/css/main.e98e72ca.css.map",
     "main.ad855457.js.map": "/my-portfolio/static/js/main.ad855457.js.map",
     "787.128fc6e9.chunk.js.map": "/my-portfolio/static/js/787.128fc6e9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.157581f7.css",
+    "static/css/main.e98e72ca.css",
     "static/js/main.ad855457.js"
   ]
 }
