@@ -10,14 +10,14 @@ const Portfolio = () => {
         <div className="col">
           <p>
             <a
-              href="https://joshuad1590.github.io/national-park-picker/"
+              href="https://truck-it-app.herokuapp.com/"
               style={{ textDecoration: "none" }}
             >
               check App
             </a>
             &nbsp; or &nbsp;
             <a
-              href="https://github.com/joshuad1590/national-park-picker"
+              href="https://github.com/willjduncan/trucked-up"
               style={{ textDecoration: "none" }}
             >
               Code
