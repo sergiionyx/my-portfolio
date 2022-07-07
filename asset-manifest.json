@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/my-portfolio/static/css/main.2c640ed6.css",
+    "main.css": "/my-portfolio/static/css/main.f3749380.css",
     "main.js": "/my-portfolio/static/js/main.cdc92de8.js",
     "static/js/787.128fc6e9.chunk.js": "/my-portfolio/static/js/787.128fc6e9.chunk.js",
     "static/media/national-park-picker_.png": "/my-portfolio/static/media/national-park-picker_.4f4c64420563c52f897a.png",
@@ -8,15 +8,16 @@
     "static/media/nerd-blog.png": "/my-portfolio/static/media/nerd-blog.b06e38aa0aac6ec9d950.png",
     "static/media/personal-accounter.png": "/my-portfolio/static/media/personal-accounter.6e0abba421c2c3966a4b.png",
     "static/media/cool-background.png": "/my-portfolio/static/media/cool-background.d356e7012d2e5454f424.png",
+    "static/media/track-it-app.png": "/my-portfolio/static/media/track-it-app.f11502111109cc4501a8.png",
     "static/media/Sergii-Onyshchenko-Resume.pdf": "/my-portfolio/static/media/Sergii-Onyshchenko-Resume.d4fc5f0b6b0366b86f96.pdf",
     "static/media/note-tacker.png": "/my-portfolio/static/media/note-tacker.621027fa302cd66fb1a6.png",
     "index.html": "/my-portfolio/index.html",
-    "main.2c640ed6.css.map": "/my-portfolio/static/css/main.2c640ed6.css.map",
+    "main.f3749380.css.map": "/my-portfolio/static/css/main.f3749380.css.map",
     "main.cdc92de8.js.map": "/my-portfolio/static/js/main.cdc92de8.js.map",
     "787.128fc6e9.chunk.js.map": "/my-portfolio/static/js/787.128fc6e9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2c640ed6.css",
+    "static/css/main.f3749380.css",
     "static/js/main.cdc92de8.js"
   ]
 }
