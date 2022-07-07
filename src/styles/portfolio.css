@@ -181,7 +181,7 @@ body {
 }
 
 .col:nth-of-type(1) .card-container:nth-of-type(1) .card:before {
-  background-image: url("https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/pia22474-2000.jpg?itok=cajl1lYH");
+  background-image: url("../assets/img/track-it-app.png");
 }
 
 .col:nth-of-type(2) .card-container:nth-of-type(1) .card:before {
