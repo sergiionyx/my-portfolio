@@ -262,6 +262,11 @@ p {
   margin: 0 !important;
 }
 
+.descr {
+  background-color: rgba(255, 255, 255, 0.537);
+  border-radius: 5px;
+}
+
 @media (max-width: 1200px) {
   body {
     overflow-y: scroll;

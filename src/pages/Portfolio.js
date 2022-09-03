@@ -30,7 +30,7 @@ const Portfolio = () => {
             <div className="overlay"></div>
             <div className="card">
               <h4>Trucked Up</h4>
-              <p>
+              <p className="descr">
                 MERN project for interactions inside company between dispatcher
                 and company drivers, creating assignments, adding projects
               </p>
@@ -57,7 +57,7 @@ const Portfolio = () => {
             <div className="overlay"></div>
             <div className="card">
               <h4>Pizza Maker</h4>
-              <p>
+              <p className="descr">
                 An app where users can create their favorite pizzas with
                 whatever toppings they wish and can comment on the creations of
                 others.
@@ -103,7 +103,7 @@ const Portfolio = () => {
             <div className="overlay"></div>
             <div className="card">
               <h4>National Park Picker</h4>
-              <p>
+              <p className="descr">
                 National Park Picker is a platform made to explore and plan
                 visits to National Parks within the USA
               </p>
@@ -133,7 +133,7 @@ const Portfolio = () => {
             <div className="overlay"></div>
             <div className="card">
               <h4>Note Tacker</h4>
-              <p>
+              <p className="descr">
                 Note Taker is a program that allows a user to write, keep, and
                 delete notes.
               </p>
@@ -176,7 +176,7 @@ const Portfolio = () => {
             <div className="overlay"></div>
             <div className="card">
               <h4>Nerd Blog</h4>
-              <p>
+              <p className="descr">
                 This Full Stack Blog allows developers to read, post, and manage
                 their posts revolving around the world of technology.
               </p>
@@ -206,7 +206,7 @@ const Portfolio = () => {
             <div className="overlay"></div>
             <div className="card">
               <h4>Personal Accounter PWA</h4>
-              <p>
+              <p className="descr">
                 {" "}
                 This app make the user be able to track my withdrawals and
                 deposits with or without a data/internet connection.

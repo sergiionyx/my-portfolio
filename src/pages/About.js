@@ -11,10 +11,10 @@ const About = () => {
         <img className="" id="img-skills" src={img} alt="skills" />
         <div className="text-div">
           <h3 className="fs-5">
-            &nbsp;&nbsp;&nbsp;&nbsp;I am writing to express my strong interest
-            in being the Full Stack Developer. With my skills and background, I
-            am confident that I will quickly surpass your expectations for this
-            role.
+            &nbsp;&nbsp;&nbsp;&nbsp; Full Stack Web Developer and graduate of
+            the University of North Carolina's 24-week bootcamp program full of
+            passion to develop and have the skills to build and implement
+            dynamic end-to-end web applications
             <br></br>&nbsp;&nbsp;During education in bootcamp of the{" "}
             <b>University of North Carolina at Charlotte(UNC)</b> I have been
             developing web applications using all necessary knowledges, skills
