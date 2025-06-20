@@ -79,7 +79,7 @@ export default function ContactForm() {
       <div>
         <label
           htmlFor="name"
-          className="block text-sm font-medium mb-2 text-gray-700"
+          className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300"
         >
           Name *
         </label>
@@ -90,14 +90,14 @@ export default function ContactForm() {
           value={formData.name}
           onChange={handleChange}
           required
-          className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-gray-900"
+          className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-gray-900 dark:text-white"
         />
       </div>
 
       <div>
         <label
           htmlFor="email"
-          className="block text-sm font-medium mb-2 text-gray-700"
+          className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300"
         >
           Email *
         </label>
@@ -108,14 +108,14 @@ export default function ContactForm() {
           value={formData.email}
           onChange={handleChange}
           required
-          className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-gray-900"
+          className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-gray-900 dark:text-white"
         />
       </div>
 
       <div>
         <label
           htmlFor="message"
-          className="block text-sm font-medium mb-2 text-gray-700"
+          className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300"
         >
           Message *
         </label>
@@ -126,7 +126,7 @@ export default function ContactForm() {
           onChange={handleChange}
           rows={4}
           required
-          className="w-full px-4 py-2 rounded-lg bg-white border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-vertical text-gray-900"
+          className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-vertical text-gray-900 dark:text-white"
         />
       </div>
 

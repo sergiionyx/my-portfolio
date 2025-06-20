@@ -8,6 +8,12 @@
   --background-end-rgb: 243, 244, 246;
 }
 
+[data-theme="dark"] {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 17, 24, 39;
+  --background-end-rgb: 31, 41, 55;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -15,6 +21,9 @@ body {
     rgb(var(--background-start-rgb)),
     rgb(var(--background-end-rgb))
   );
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 /* Smooth scrolling */
@@ -28,7 +37,7 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(243, 244, 246);
+  background: rgb(var(--background-start-rgb));
 }
 
 ::-webkit-scrollbar-thumb {
@@ -38,4 +47,9 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(37, 99, 235);
+}
+
+/* Ensure dark mode classes work properly */
+.dark {
+  color-scheme: dark;
 }
