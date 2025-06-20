@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 17, 24, 39;
-  --background-end-rgb: 31, 41, 55;
+  --foreground-rgb: 17, 24, 39;
+  --background-start-rgb: 249, 250, 251;
+  --background-end-rgb: 243, 244, 246;
 }
 
 body {
@@ -28,7 +28,7 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(17, 24, 39);
+  background: rgb(243, 244, 246);
 }
 
 ::-webkit-scrollbar-thumb {
