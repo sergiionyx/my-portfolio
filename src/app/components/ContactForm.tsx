@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 declare global {
   interface Window {
     grecaptcha: any;
-    onRecaptchaLoad: () => void;
   }
 }
 
@@ -21,12 +20,9 @@ export default function ContactForm() {
     message: string;
   }>({ type: null, message: "" });
 
-  // reCAPTCHA state
-  const [recaptchaToken, setRecaptchaToken] = useState("");
+  // reCAPTCHA v3 state
   const [isRecaptchaLoaded, setIsRecaptchaLoaded] = useState(false);
   const [isLocalhost, setIsLocalhost] = useState(false);
-  const recaptchaRendered = useRef(false);
-  const scriptLoaded = useRef(false);
 
   // Check if running on localhost
   useEffect(() => {
@@ -36,38 +32,43 @@ export default function ContactForm() {
     );
   }, []);
 
-  // Load reCAPTCHA script
+  // Load reCAPTCHA v3 script
   useEffect(() => {
-    // Skip reCAPTCHA on localhost if not configured
-    // if (isLocalhost) {
-    //   console.log("Running on localhost - reCAPTCHA disabled for development");
-    //   return;
-    // }
-
-    // Prevent multiple script loads
-    if (scriptLoaded.current) {
+    // Skip reCAPTCHA on localhost
+    if (isLocalhost) {
+      console.log(
+        "Running on localhost - reCAPTCHA v3 disabled for development"
+      );
       return;
     }
 
     // Check if script is already loaded
     if (window.grecaptcha) {
       setIsRecaptchaLoaded(true);
-      scriptLoaded.current = true;
       return;
     }
 
-    // Load reCAPTCHA script
+    const siteKey =
+      process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
+      "6LeGF2orAAAAACn0ayaUNhhsmQHqbnp3arca_gsf";
+    console.log("Loading reCAPTCHA v3 with site key:", siteKey);
+    console.log("Current domain:", window.location.hostname);
+
+    // Load reCAPTCHA v3 script
     const script = document.createElement("script");
-    script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
+    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
     script.async = true;
     script.defer = true;
 
-    window.onRecaptchaLoad = () => {
+    script.onload = () => {
+      console.log("reCAPTCHA v3 script loaded");
       setIsRecaptchaLoaded(true);
-      scriptLoaded.current = true;
     };
 
-    script.onload = window.onRecaptchaLoad;
+    script.onerror = () => {
+      console.error("Failed to load reCAPTCHA v3 script");
+    };
+
     document.head.appendChild(script);
 
     return () => {
@@ -77,61 +78,6 @@ export default function ContactForm() {
       }
     };
   }, [isLocalhost]);
-
-  // Render reCAPTCHA when loaded
-  useEffect(() => {
-    if (isLocalhost) return; // Skip on localhost
-
-    if (isRecaptchaLoaded && window.grecaptcha && !recaptchaRendered.current) {
-      // Check if element already has reCAPTCHA
-      const container = document.getElementById("recaptcha-container");
-      if (container && container.children.length === 0) {
-        try {
-          const siteKey =
-            process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
-            "6LeGF2orAAAAACn0ayaUNhhsmQHqbnp3arca_gsf";
-          console.log("Attempting to render reCAPTCHA with site key:", siteKey);
-          console.log("Current domain:", window.location.hostname);
-          console.log("Current URL:", window.location.href);
-          console.log("reCAPTCHA script loaded:", !!window.grecaptcha);
-
-          window.grecaptcha.ready(() => {
-            console.log("reCAPTCHA ready callback triggered");
-            window.grecaptcha.render("recaptcha-container", {
-              sitekey: siteKey,
-              callback: (token: string) => {
-                console.log(
-                  "reCAPTCHA callback triggered with token:",
-                  token.substring(0, 20) + "..."
-                );
-                setRecaptchaToken(token);
-              },
-              "expired-callback": () => {
-                console.log("reCAPTCHA expired");
-                setRecaptchaToken("");
-              },
-              "error-callback": (error: any) => {
-                console.error(
-                  "reCAPTCHA error callback triggered with error:",
-                  error
-                );
-                console.error("Error details:", {
-                  siteKey: siteKey,
-                  domain: window.location.hostname,
-                  url: window.location.href,
-                  grecaptcha: !!window.grecaptcha,
-                });
-              },
-            });
-            recaptchaRendered.current = true;
-            console.log("reCAPTCHA rendered successfully");
-          });
-        } catch (error) {
-          console.error("reCAPTCHA render error:", error);
-        }
-      }
-    }
-  }, [isRecaptchaLoaded, isLocalhost]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -146,22 +92,35 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Skip reCAPTCHA verification on localhost
-    if (!isLocalhost) {
-      // Verify reCAPTCHA
-      if (!recaptchaToken) {
-        setSubmitStatus({
-          type: "error",
-          message: "Please complete the reCAPTCHA verification.",
-        });
-        return;
-      }
-    }
-
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: "" });
 
     try {
+      let recaptchaToken = "";
+
+      // Get reCAPTCHA token (skip on localhost)
+      if (!isLocalhost) {
+        if (!window.grecaptcha) {
+          throw new Error("reCAPTCHA not loaded");
+        }
+
+        const siteKey =
+          process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
+          "6LeGF2orAAAAACn0ayaUNhhsmQHqbnp3arca_gsf";
+        console.log("Executing reCAPTCHA v3 with action 'submit'");
+
+        recaptchaToken = await window.grecaptcha.execute(siteKey, {
+          action: "submit",
+        });
+        console.log(
+          "reCAPTCHA v3 token received:",
+          recaptchaToken.substring(0, 20) + "..."
+        );
+      } else {
+        recaptchaToken = "localhost-development";
+      }
+
+      // Send form data
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -169,9 +128,7 @@ export default function ContactForm() {
         },
         body: JSON.stringify({
           ...formData,
-          recaptchaToken: isLocalhost
-            ? "localhost-development"
-            : recaptchaToken,
+          recaptchaToken,
         }),
       });
 
@@ -183,11 +140,6 @@ export default function ContactForm() {
           message: "Thank you! Your message has been sent successfully.",
         });
         setFormData({ name: "", email: "", message: "" });
-        setRecaptchaToken("");
-        // Reset reCAPTCHA
-        if (window.grecaptcha && !isLocalhost) {
-          window.grecaptcha.reset();
-        }
       } else {
         setSubmitStatus({
           type: "error",
@@ -195,6 +147,7 @@ export default function ContactForm() {
         });
       }
     } catch (error) {
+      console.error("Form submission error:", error);
       setSubmitStatus({
         type: "error",
         message: "Network error. Please check your connection and try again.",
@@ -272,35 +225,29 @@ export default function ContactForm() {
         />
       </div>
 
-      {/* reCAPTCHA Section - Only show on production */}
-      {!isLocalhost && (
+      {/* reCAPTCHA v3 is invisible - no UI needed */}
+      {!isLocalhost && !isRecaptchaLoaded && (
         <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
-            Human Verification *
-          </label>
-          <div id="recaptcha-container" className="flex justify-center"></div>
-          {!isRecaptchaLoaded && (
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-              Loading verification...
-            </p>
-          )}
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Loading security verification...
+          </p>
         </div>
       )}
 
       {/* Development notice */}
-      {/* {isLocalhost && (
+      {isLocalhost && (
         <div className="bg-yellow-500/20 border border-yellow-500 text-yellow-300 p-4 rounded-lg">
           <p className="text-sm">
-            🚧 Development Mode: reCAPTCHA is disabled for localhost testing.
+            🚧 Development Mode: reCAPTCHA v3 is disabled for localhost testing.
           </p>
         </div>
-      )} */}
+      )}
 
       <button
         type="submit"
-        disabled={isSubmitting || (!isLocalhost && !recaptchaToken)}
+        disabled={isSubmitting}
         className={`w-full font-bold py-3 px-8 rounded-lg transition duration-300 ${
-          isSubmitting || (!isLocalhost && !recaptchaToken)
+          isSubmitting
             ? "bg-gray-500 cursor-not-allowed"
             : "bg-blue-500 hover:bg-blue-600"
         } text-white`}
