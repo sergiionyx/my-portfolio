@@ -39,10 +39,10 @@ export default function ContactForm() {
   // Load reCAPTCHA script
   useEffect(() => {
     // Skip reCAPTCHA on localhost if not configured
-    if (isLocalhost) {
-      console.log("Running on localhost - reCAPTCHA disabled for development");
-      return;
-    }
+    // if (isLocalhost) {
+    //   console.log("Running on localhost - reCAPTCHA disabled for development");
+    //   return;
+    // }
 
     // Prevent multiple script loads
     if (scriptLoaded.current) {
@@ -87,19 +87,32 @@ export default function ContactForm() {
       const container = document.getElementById("recaptcha-container");
       if (container && container.children.length === 0) {
         try {
+          const siteKey =
+            process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
+            "6LeGF2orAAAAACn0ayaUNhhsmQHqbnp3arca_gsf";
+          console.log("Attempting to render reCAPTCHA with site key:", siteKey);
+          console.log("Current domain:", window.location.hostname);
+
           window.grecaptcha.ready(() => {
             window.grecaptcha.render("recaptcha-container", {
-              sitekey:
-                process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
-                "6LeGF2orAAAAACn0ayaUNhhsmQHqbnp3arca_gsf",
+              sitekey: siteKey,
               callback: (token: string) => {
+                console.log(
+                  "reCAPTCHA callback triggered with token:",
+                  token.substring(0, 20) + "..."
+                );
                 setRecaptchaToken(token);
               },
               "expired-callback": () => {
+                console.log("reCAPTCHA expired");
                 setRecaptchaToken("");
+              },
+              "error-callback": () => {
+                console.error("reCAPTCHA error callback triggered");
               },
             });
             recaptchaRendered.current = true;
+            console.log("reCAPTCHA rendered successfully");
           });
         } catch (error) {
           console.error("reCAPTCHA render error:", error);
@@ -263,13 +276,13 @@ export default function ContactForm() {
       )}
 
       {/* Development notice */}
-      {isLocalhost && (
+      {/* {isLocalhost && (
         <div className="bg-yellow-500/20 border border-yellow-500 text-yellow-300 p-4 rounded-lg">
           <p className="text-sm">
             🚧 Development Mode: reCAPTCHA is disabled for localhost testing.
           </p>
         </div>
-      )}
+      )} */}
 
       <button
         type="submit"

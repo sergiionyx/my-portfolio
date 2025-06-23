@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Skip reCAPTCHA verification for localhost development
-    if (recaptchaToken !== "localhost-development") {
+    // if (recaptchaToken !== "localhost-development") {
       const isRecaptchaValid = await verifyRecaptcha(recaptchaToken);
       if (!isRecaptchaValid) {
         return NextResponse.json(
@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
           { status: 400 }
         );
       }
-    }
+    // }
 
     // Send email using Resend with improved deliverability
     const { data, error } = await resend.emails.send({
