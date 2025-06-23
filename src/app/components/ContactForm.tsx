@@ -92,8 +92,11 @@ export default function ContactForm() {
             "6LeGF2orAAAAACn0ayaUNhhsmQHqbnp3arca_gsf";
           console.log("Attempting to render reCAPTCHA with site key:", siteKey);
           console.log("Current domain:", window.location.hostname);
+          console.log("Current URL:", window.location.href);
+          console.log("reCAPTCHA script loaded:", !!window.grecaptcha);
 
           window.grecaptcha.ready(() => {
+            console.log("reCAPTCHA ready callback triggered");
             window.grecaptcha.render("recaptcha-container", {
               sitekey: siteKey,
               callback: (token: string) => {
@@ -107,8 +110,17 @@ export default function ContactForm() {
                 console.log("reCAPTCHA expired");
                 setRecaptchaToken("");
               },
-              "error-callback": () => {
-                console.error("reCAPTCHA error callback triggered");
+              "error-callback": (error: any) => {
+                console.error(
+                  "reCAPTCHA error callback triggered with error:",
+                  error
+                );
+                console.error("Error details:", {
+                  siteKey: siteKey,
+                  domain: window.location.hostname,
+                  url: window.location.href,
+                  grecaptcha: !!window.grecaptcha,
+                });
               },
             });
             recaptchaRendered.current = true;
