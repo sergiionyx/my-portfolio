@@ -12,16 +12,16 @@ const projects = [
     image: "/images/ok-expedite-project.png", // Add your actual image path
     liveUrl: "https://www.okexpeditelocksmith.com/",
   },
-  // {
-  //   id: 2,
-  //   title: "Restaurant Website",
-  //   description:
-  //     "Responsive restaurant website with online menu, reservation system, and location finder.",
-  //   image: "/images/restaurant-project.jpg", // Add your actual image path
-  //   technologies: ["React", "Node.js", "MongoDB", "Express"],
-  //   liveUrl: "#",
-  //   githubUrl: "#",
-  // },
+  {
+    id: 2,
+    title: "Multi page Website",
+    description:
+      "Complete business website package with online payment processing, professional photo gallery, customer contact system, and search engine optimization. Perfect for businesses that need to accept payments online and showcase their work with a professional image gallery.",
+    image: "/images/locksmith-website.png", // Add your actual image path
+    technologies: ["React", "Node.js", "MongoDB", "Express"],
+    liveUrl: "https://locksmith-two.vercel.app/",
+    githubUrl: "#",
+  },
   // {
   //   id: 3,
   //   title: "Portfolio Template",
@@ -68,13 +68,32 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800">
-        <div className="container mx-auto px-4">
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "center 20%" }}
+          >
+            <source src="/videos/hero-background.mp4" type="video/mp4" />
+            <source src="/videos/hero-background.webm" type="video/webm" />
+            {/* Fallback background if video doesn't load */}
+          </video>
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/20 dark:bg-black/60"></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 pb-2 text-gray-900 dark:bg-clip-text dark:text-transparent dark:bg-gradient-to-r dark:from-blue-400 dark:to-purple-500">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 pb-2 text-white">
               Professional Websites for Small Businesses
             </h1>
-            <p className="text-xl text-gray-700 dark:text-gray-300 mb-8">
+            <p className="text-xl text-gray-200 mb-8">
               Get a modern, mobile-friendly website that helps your business
               grow. Affordable, professional web design services tailored for
               small businesses.
@@ -88,7 +107,7 @@ export default function Home() {
               </a>
               <a
                 href="#projects"
-                className="bg-gray-700 dark:bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-600 dark:hover:bg-gray-500 transition"
+                className="bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/30 transition border border-white/30"
               >
                 View Our Work
               </a>
@@ -250,8 +269,9 @@ export default function Home() {
                 key={project.id}
                 href={project.liveUrl}
                 className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 inline-flex items-center text-sm"
+                target="_blank"
               >
-                <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-300 group shadow-lg">
+                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg overflow-hidden hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transition duration-300 group flex flex-col h-full">
                   <div className="relative h-60 bg-gray-100 dark:bg-gray-700 overflow-hidden">
                     <Image
                       src={project.image}
@@ -261,11 +281,11 @@ export default function Home() {
                       className="object-cover group-hover:scale-105 transition duration-300"
                     />
                   </div>
-                  <div className="p-4">
+                  <div className="p-4 flex-1 flex flex-col">
                     <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
                       {project.title}
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm">
+                    <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm flex-1">
                       {project.description}
                     </p>
                   </div>
@@ -280,204 +300,486 @@ export default function Home() {
       <section id="pricing" className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
-            Affordable Website Packages
+            Website Packages (Base Prices)
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
-                Basic Business
-              </h3>
-              <p className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                $999
-              </p>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-center text-gray-700 dark:text-gray-300">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  5 Pages
-                </li>
-                <li className="flex items-center text-gray-700 dark:text-gray-300">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Mobile Responsive
-                </li>
-                <li className="flex items-center text-gray-700 dark:text-gray-300">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Contact Form
-                </li>
-              </ul>
-              <a
-                href="#contact"
-                className="block text-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
-              >
-                Get Started
-              </a>
-            </div>
-            <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg border-2 border-blue-600">
-              <div className="bg-blue-600 text-white text-sm font-semibold px-4 py-1 rounded-full inline-block mb-4">
-                Most Popular
+
+          {/* Main Packages Table */}
+          <div className="overflow-x-auto mb-16">
+            <table className="w-full bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+              <thead className="bg-gray-200 dark:bg-gray-900">
+                <tr>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
+                    Package
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
+                    Perfect For
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
+                    What You Get
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
+                    Price (USD)
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4">
+                    <span className="font-bold text-blue-600 dark:text-blue-400">
+                      Starter
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Freelancers, solo service providers
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    1–3 page website
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="font-bold text-green-600 dark:text-green-400">
+                      $700–$1,200
+                    </span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4">
+                    <span className="font-bold text-blue-600 dark:text-blue-400">
+                      Business
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Small/local businesses, nonprofits
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    4–7 page website
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="font-bold text-green-600 dark:text-green-400">
+                      $1,500–$2,800
+                    </span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4">
+                    <span className="font-bold text-blue-600 dark:text-blue-400">
+                      Premium
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Agencies, real estate, legal, education
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    8–12 page website + blog
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="font-bold text-green-600 dark:text-green-400">
+                      $3,000–$5,500
+                    </span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4">
+                    <span className="font-bold text-blue-600 dark:text-blue-400">
+                      Web App
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    SaaS, platforms, client portals
+                  </td>
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Custom web application
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="font-bold text-green-600 dark:text-green-400">
+                      $6,000+
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Features Comparison */}
+          <h3 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+            What's Included in Each Package
+          </h3>
+          <div className="overflow-x-auto mb-16">
+            <table className="w-full bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+              <thead className="bg-gray-200 dark:bg-gray-900">
+                <tr>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
+                    Feature
+                  </th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-white">
+                    Starter
+                  </th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-white">
+                    Business
+                  </th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-white">
+                    Premium
+                  </th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-white">
+                    Web App
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Mobile-friendly design
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Fast loading website
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Contact form
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Search engine optimization
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Website hosting setup
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Custom design & navigation
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Blog or content management
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-gray-400 text-xl">—</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-yellow-500 text-xl">🔄</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Admin dashboard
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-gray-400 text-xl">—</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-gray-400 text-xl">—</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-gray-400 text-xl">—</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    User login system
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-gray-400 text-xl">—</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-gray-400 text-xl">—</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-gray-400 text-xl">—</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Add-Ons Section */}
+          <h3 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+            Add-Ons (Customize Any Package)
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-3">
+                <span className="text-green-500 text-xl mr-2">✅</span>
+                <h4 className="font-semibold text-gray-900 dark:text-white">
+                  CMS Integration
+                </h4>
               </div>
-              <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
-                Professional Business
-              </h3>
-              <p className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                $1,999
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                Sanity, Strapi, etc.
               </p>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-center text-gray-700 dark:text-gray-300">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  10 Pages
-                </li>
-                <li className="flex items-center text-gray-700 dark:text-gray-300">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Blog Setup
-                </li>
-                <li className="flex items-center text-gray-700 dark:text-gray-300">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  SEO Optimization
-                </li>
-              </ul>
-              <a
-                href="#contact"
-                className="block text-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
-              >
-                Get Started
-              </a>
+              <p className="font-bold text-green-600 dark:text-green-400">
+                +$300–$1,000
+              </p>
             </div>
-            <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
-                E-commerce
-              </h3>
-              <p className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                $2,999
+
+            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-3">
+                <span className="text-blue-500 text-xl mr-2">🖼️</span>
+                <h4 className="font-semibold text-gray-900 dark:text-white">
+                  Image Carousel/Gallery
+                </h4>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                Slider functionality
               </p>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-center text-gray-700 dark:text-gray-300">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Online Store
-                </li>
-                <li className="flex items-center text-gray-700 dark:text-gray-300">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+              <p className="font-bold text-green-600 dark:text-green-400">
+                +$100–$300
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-3">
+                <span className="text-purple-500 text-xl mr-2">📈</span>
+                <h4 className="font-semibold text-gray-900 dark:text-white">
+                  Analytics Setup
+                </h4>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                GA4, Meta Pixel
+              </p>
+              <p className="font-bold text-green-600 dark:text-green-400">
+                +$100–$200
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-3">
+                <span className="text-yellow-500 text-xl mr-2">🧠</span>
+                <h4 className="font-semibold text-gray-900 dark:text-white">
+                  Copywriting
+                </h4>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                Website pages content
+              </p>
+              <p className="font-bold text-green-600 dark:text-green-400">
+                +$200–$800
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-3">
+                <span className="text-red-500 text-xl mr-2">📍</span>
+                <h4 className="font-semibold text-gray-900 dark:text-white">
+                  Google Maps
+                </h4>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                Location embed
+              </p>
+              <p className="font-bold text-green-600 dark:text-green-400">
+                +$50–$150
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-3">
+                <span className="text-indigo-500 text-xl mr-2">🌐</span>
+                <h4 className="font-semibold text-gray-900 dark:text-white">
+                  Multi-language
+                </h4>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                i18n support
+              </p>
+              <p className="font-bold text-green-600 dark:text-green-400">
+                +$300–$700
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-3">
+                <span className="text-green-500 text-xl mr-2">💳</span>
+                <h4 className="font-semibold text-gray-900 dark:text-white">
                   Payment Integration
-                </li>
-                <li className="flex items-center text-gray-700 dark:text-gray-300">
-                  <svg
-                    className="w-5 h-5 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  Inventory Management
-                </li>
-              </ul>
-              <a
-                href="#contact"
-                className="block text-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
-              >
-                Get Started
-              </a>
+                </h4>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                Stripe or PayPal
+              </p>
+              <p className="font-bold text-green-600 dark:text-green-400">
+                +$300–$600
+              </p>
             </div>
+
+            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-3">
+                <span className="text-orange-500 text-xl mr-2">🔐</span>
+                <h4 className="font-semibold text-gray-900 dark:text-white">
+                  User Login & Access
+                </h4>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                Role-based access
+              </p>
+              <p className="font-bold text-green-600 dark:text-green-400">
+                +$800–$1,500
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-3">
+                <span className="text-teal-500 text-xl mr-2">🗃️</span>
+                <h4 className="font-semibold text-gray-900 dark:text-white">
+                  Custom Admin Panel
+                </h4>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                CMS UI
+              </p>
+              <p className="font-bold text-green-600 dark:text-green-400">
+                +$1,000–$2,000
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-3">
+                <span className="text-blue-500 text-xl mr-2">🔄</span>
+                <h4 className="font-semibold text-gray-900 dark:text-white">
+                  API Integration
+                </h4>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                External services
+              </p>
+              <p className="font-bold text-green-600 dark:text-green-400">
+                +$400–$1,000
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-3">
+                <span className="text-purple-500 text-xl mr-2">🧪</span>
+                <h4 className="font-semibold text-gray-900 dark:text-white">
+                  Monthly Support
+                </h4>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                Maintenance
+              </p>
+              <p className="font-bold text-green-600 dark:text-green-400">
+                +$100–$500/mo
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+              <div className="flex items-center mb-3">
+                <span className="text-yellow-500 text-xl mr-2">🚀</span>
+                <h4 className="font-semibold text-gray-900 dark:text-white">
+                  SEO + Marketing
+                </h4>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                Optimization help
+              </p>
+              <p className="font-bold text-green-600 dark:text-green-400">
+                +$500–$2,000/mo
+              </p>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center">
+            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+              Ready to get started? Let's discuss your project and find the
+              perfect package for your needs.
+            </p>
+            <a
+              href="#contact"
+              className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+            >
+              Get Your Free Quote
+            </a>
           </div>
         </div>
       </section>

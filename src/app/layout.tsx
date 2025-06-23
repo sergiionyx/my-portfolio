@@ -211,7 +211,7 @@ export default function RootLayout({
                   </li>
                 </ul>
               </div>
-              <div>
+              {/* <div>
                 <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
                   Contact
                 </h3>
@@ -251,7 +251,7 @@ export default function RootLayout({
                     </a>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </div>
             <div className="border-t border-gray-200 dark:border-gray-700 pt-8">
               <div className="flex flex-col md:flex-row justify-between items-center">

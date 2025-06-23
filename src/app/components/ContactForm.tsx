@@ -1,6 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+
+declare global {
+  interface Window {
+    grecaptcha: any;
+    onRecaptchaLoad: () => void;
+  }
+}
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -14,6 +21,74 @@ export default function ContactForm() {
     message: string;
   }>({ type: null, message: "" });
 
+  // reCAPTCHA state
+  const [recaptchaToken, setRecaptchaToken] = useState("");
+  const [isRecaptchaLoaded, setIsRecaptchaLoaded] = useState(false);
+  const recaptchaRendered = useRef(false);
+  const scriptLoaded = useRef(false);
+
+  // Load reCAPTCHA script
+  useEffect(() => {
+    // Prevent multiple script loads
+    if (scriptLoaded.current) {
+      return;
+    }
+
+    // Check if script is already loaded
+    if (window.grecaptcha) {
+      setIsRecaptchaLoaded(true);
+      scriptLoaded.current = true;
+      return;
+    }
+
+    // Load reCAPTCHA script
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
+    script.async = true;
+    script.defer = true;
+
+    window.onRecaptchaLoad = () => {
+      setIsRecaptchaLoaded(true);
+      scriptLoaded.current = true;
+    };
+
+    script.onload = window.onRecaptchaLoad;
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
+    };
+  }, []);
+
+  // Render reCAPTCHA when loaded
+  useEffect(() => {
+    if (isRecaptchaLoaded && window.grecaptcha && !recaptchaRendered.current) {
+      // Check if element already has reCAPTCHA
+      const container = document.getElementById("recaptcha-container");
+      if (container && container.children.length === 0) {
+        try {
+          window.grecaptcha.ready(() => {
+            window.grecaptcha.render("recaptcha-container", {
+              sitekey: "6LcXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", // Replace with your site key
+              callback: (token: string) => {
+                setRecaptchaToken(token);
+              },
+              "expired-callback": () => {
+                setRecaptchaToken("");
+              },
+            });
+            recaptchaRendered.current = true;
+          });
+        } catch (error) {
+          console.error("reCAPTCHA render error:", error);
+        }
+      }
+    }
+  }, [isRecaptchaLoaded]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -26,6 +101,16 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Verify reCAPTCHA
+    if (!recaptchaToken) {
+      setSubmitStatus({
+        type: "error",
+        message: "Please complete the reCAPTCHA verification.",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: "" });
 
@@ -35,7 +120,10 @@ export default function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken,
+        }),
       });
 
       const data = await response.json();
@@ -46,6 +134,11 @@ export default function ContactForm() {
           message: "Thank you! Your message has been sent successfully.",
         });
         setFormData({ name: "", email: "", message: "" });
+        setRecaptchaToken("");
+        // Reset reCAPTCHA
+        if (window.grecaptcha) {
+          window.grecaptcha.reset();
+        }
       } else {
         setSubmitStatus({
           type: "error",
@@ -130,11 +223,24 @@ export default function ContactForm() {
         />
       </div>
 
+      {/* reCAPTCHA Section */}
+      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+        <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+          Human Verification *
+        </label>
+        <div id="recaptcha-container" className="flex justify-center"></div>
+        {!isRecaptchaLoaded && (
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+            Loading verification...
+          </p>
+        )}
+      </div>
+
       <button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || !recaptchaToken}
         className={`w-full font-bold py-3 px-8 rounded-lg transition duration-300 ${
-          isSubmitting
+          isSubmitting || !recaptchaToken
             ? "bg-gray-500 cursor-not-allowed"
             : "bg-blue-500 hover:bg-blue-600"
         } text-white`}
