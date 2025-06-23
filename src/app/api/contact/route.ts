@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Verify reCAPTCHA
+    // Verify reCAPTCHA (skip for localhost development)
     if (!recaptchaToken) {
       return NextResponse.json(
         { error: "reCAPTCHA verification required" },
@@ -48,12 +48,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const isRecaptchaValid = await verifyRecaptcha(recaptchaToken);
-    if (!isRecaptchaValid) {
-      return NextResponse.json(
-        { error: "reCAPTCHA verification failed. Please try again." },
-        { status: 400 }
-      );
+    // Skip reCAPTCHA verification for localhost development
+    if (recaptchaToken !== "localhost-development") {
+      const isRecaptchaValid = await verifyRecaptcha(recaptchaToken);
+      if (!isRecaptchaValid) {
+        return NextResponse.json(
+          { error: "reCAPTCHA verification failed. Please try again." },
+          { status: 400 }
+        );
+      }
     }
 
     // Send email using Resend with improved deliverability

@@ -24,11 +24,26 @@ export default function ContactForm() {
   // reCAPTCHA state
   const [recaptchaToken, setRecaptchaToken] = useState("");
   const [isRecaptchaLoaded, setIsRecaptchaLoaded] = useState(false);
+  const [isLocalhost, setIsLocalhost] = useState(false);
   const recaptchaRendered = useRef(false);
   const scriptLoaded = useRef(false);
 
+  // Check if running on localhost
+  useEffect(() => {
+    setIsLocalhost(
+      window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1"
+    );
+  }, []);
+
   // Load reCAPTCHA script
   useEffect(() => {
+    // Skip reCAPTCHA on localhost if not configured
+    if (isLocalhost) {
+      console.log("Running on localhost - reCAPTCHA disabled for development");
+      return;
+    }
+
     // Prevent multiple script loads
     if (scriptLoaded.current) {
       return;
@@ -61,10 +76,12 @@ export default function ContactForm() {
         document.head.removeChild(script);
       }
     };
-  }, []);
+  }, [isLocalhost]);
 
   // Render reCAPTCHA when loaded
   useEffect(() => {
+    if (isLocalhost) return; // Skip on localhost
+
     if (isRecaptchaLoaded && window.grecaptcha && !recaptchaRendered.current) {
       // Check if element already has reCAPTCHA
       const container = document.getElementById("recaptcha-container");
@@ -72,7 +89,9 @@ export default function ContactForm() {
         try {
           window.grecaptcha.ready(() => {
             window.grecaptcha.render("recaptcha-container", {
-              sitekey: "6LcXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", // Replace with your site key
+              sitekey:
+                process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
+                "6LeGF2orAAAAACn0ayaUNhhsmQHqbnp3arca_gsf",
               callback: (token: string) => {
                 setRecaptchaToken(token);
               },
@@ -87,7 +106,7 @@ export default function ContactForm() {
         }
       }
     }
-  }, [isRecaptchaLoaded]);
+  }, [isRecaptchaLoaded, isLocalhost]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -102,13 +121,16 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Verify reCAPTCHA
-    if (!recaptchaToken) {
-      setSubmitStatus({
-        type: "error",
-        message: "Please complete the reCAPTCHA verification.",
-      });
-      return;
+    // Skip reCAPTCHA verification on localhost
+    if (!isLocalhost) {
+      // Verify reCAPTCHA
+      if (!recaptchaToken) {
+        setSubmitStatus({
+          type: "error",
+          message: "Please complete the reCAPTCHA verification.",
+        });
+        return;
+      }
     }
 
     setIsSubmitting(true);
@@ -122,7 +144,9 @@ export default function ContactForm() {
         },
         body: JSON.stringify({
           ...formData,
-          recaptchaToken,
+          recaptchaToken: isLocalhost
+            ? "localhost-development"
+            : recaptchaToken,
         }),
       });
 
@@ -136,7 +160,7 @@ export default function ContactForm() {
         setFormData({ name: "", email: "", message: "" });
         setRecaptchaToken("");
         // Reset reCAPTCHA
-        if (window.grecaptcha) {
+        if (window.grecaptcha && !isLocalhost) {
           window.grecaptcha.reset();
         }
       } else {
@@ -223,24 +247,35 @@ export default function ContactForm() {
         />
       </div>
 
-      {/* reCAPTCHA Section */}
-      <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-        <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
-          Human Verification *
-        </label>
-        <div id="recaptcha-container" className="flex justify-center"></div>
-        {!isRecaptchaLoaded && (
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-            Loading verification...
+      {/* reCAPTCHA Section - Only show on production */}
+      {!isLocalhost && (
+        <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            Human Verification *
+          </label>
+          <div id="recaptcha-container" className="flex justify-center"></div>
+          {!isRecaptchaLoaded && (
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+              Loading verification...
+            </p>
+          )}
+        </div>
+      )}
+
+      {/* Development notice */}
+      {isLocalhost && (
+        <div className="bg-yellow-500/20 border border-yellow-500 text-yellow-300 p-4 rounded-lg">
+          <p className="text-sm">
+            🚧 Development Mode: reCAPTCHA is disabled for localhost testing.
           </p>
-        )}
-      </div>
+        </div>
+      )}
 
       <button
         type="submit"
-        disabled={isSubmitting || !recaptchaToken}
+        disabled={isSubmitting || (!isLocalhost && !recaptchaToken)}
         className={`w-full font-bold py-3 px-8 rounded-lg transition duration-300 ${
-          isSubmitting || !recaptchaToken
+          isSubmitting || (!isLocalhost && !recaptchaToken)
             ? "bg-gray-500 cursor-not-allowed"
             : "bg-blue-500 hover:bg-blue-600"
         } text-white`}
