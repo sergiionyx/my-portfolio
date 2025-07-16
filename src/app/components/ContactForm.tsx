@@ -4,7 +4,12 @@ import { useState, useEffect } from "react";
 
 declare global {
   interface Window {
-    grecaptcha: any;
+    grecaptcha: {
+      execute: (
+        siteKey: string,
+        options: { action: string }
+      ) => Promise<string>;
+    };
   }
 }
 
