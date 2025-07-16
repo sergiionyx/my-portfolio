@@ -92,7 +92,8 @@ export async function POST(request: NextRequest) {
     console.log("API: Sending email via Resend...");
     // Send email using Resend with improved deliverability
     const { data, error } = await resend.emails.send({
-      from: "Sergii from Create Website 4U <contact@createwebsite4u.com>", // Use your verified domain
+      from: "Sergii from Create Website 4U <www.createwebsite4u.com@gmail.com>", // Use your Gmail
+      // from: "Sergii from Create Website 4U <contact@createwebsite4u.com>", // Use your verified domain
       // from: "Sergii from Create Website 4U <onboarding@resend.dev>", // Use Resend's default domain
       to: ["www.createwebsite4u.com@gmail.com"],
       replyTo: email, // Important: allows direct replies to the sender
