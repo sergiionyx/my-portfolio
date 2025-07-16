@@ -70,8 +70,10 @@ export default function ContactForm() {
       setIsRecaptchaLoaded(true);
     };
 
-    script.onerror = () => {
-      console.error("Failed to load reCAPTCHA v3 script");
+    script.onerror = (error) => {
+      console.error("Failed to load reCAPTCHA v3 script:", error);
+      console.error("Script URL:", script.src);
+      console.error("User Agent:", navigator.userAgent);
     };
 
     document.head.appendChild(script);
