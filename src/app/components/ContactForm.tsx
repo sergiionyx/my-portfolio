@@ -47,41 +47,68 @@ export default function ContactForm() {
       return;
     }
 
-    // Check if script is already loaded
-    if (window.grecaptcha) {
-      setIsRecaptchaLoaded(true);
-      return;
-    }
+    const loadRecaptcha = () => {
+      // Remove existing script if any
+      const existingScript = document.querySelector('script[src*="recaptcha"]');
+      if (existingScript) {
+        existingScript.remove();
+      }
 
-    const siteKey =
-      process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
-      "6LeGF2orAAAAACn0ayaUNhhsmQHqbnp3arca_gsf";
-    console.log("Loading reCAPTCHA v3 with site key:", siteKey);
-    console.log("Current domain:", window.location.hostname);
+      // Reset grecaptcha
+      if (window.grecaptcha) {
+        (window as any).grecaptcha = undefined;
+      }
 
-    // Load reCAPTCHA v3 script
-    const script = document.createElement("script");
-    script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
-    script.async = true;
-    script.defer = true;
+      const siteKey =
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
+        "6LeGF2orAAAAACn0ayaUNhhsmQHqbnp3arca_gsf";
+      console.log("Loading reCAPTCHA v3 with site key:", siteKey);
+      console.log("Current domain:", window.location.hostname);
+      console.log("Viewport size:", window.innerWidth, "x", window.innerHeight);
 
-    script.onload = () => {
-      console.log("reCAPTCHA v3 script loaded");
-      setIsRecaptchaLoaded(true);
+      // Load reCAPTCHA v3 script
+      const script = document.createElement("script");
+      script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+      script.async = true;
+      script.defer = true;
+
+      script.onload = () => {
+        console.log("reCAPTCHA v3 script loaded");
+        setIsRecaptchaLoaded(true);
+      };
+
+      script.onerror = (error) => {
+        console.error("Failed to load reCAPTCHA v3 script:", error);
+        console.error("Script URL:", script.src);
+        console.error("User Agent:", navigator.userAgent);
+      };
+
+      document.head.appendChild(script);
     };
 
-    script.onerror = (error) => {
-      console.error("Failed to load reCAPTCHA v3 script:", error);
-      console.error("Script URL:", script.src);
-      console.error("User Agent:", navigator.userAgent);
+    // Load initially
+    loadRecaptcha();
+
+    // Reload on resize (debounced)
+    let resizeTimeout: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        console.log("Window resized, reloading reCAPTCHA...");
+        setIsRecaptchaLoaded(false);
+        loadRecaptcha();
+      }, 500);
     };
 
-    document.head.appendChild(script);
+    window.addEventListener("resize", handleResize);
 
     return () => {
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(resizeTimeout);
       // Cleanup
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
+      const script = document.querySelector('script[src*="recaptcha"]');
+      if (script) {
+        script.remove();
       }
     };
   }, [isLocalhost]);
