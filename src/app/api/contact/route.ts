@@ -54,13 +54,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const isRecaptchaValid = await verifyRecaptcha(recaptchaToken);
+    // Skip reCAPTCHA verification for localhost development
+    const isLocalhost =
+      request.headers.get("host")?.includes("localhost") ||
+      request.headers.get("host")?.includes("127.0.0.1");
 
-    if (!isRecaptchaValid) {
-      return NextResponse.json(
-        { error: "reCAPTCHA verification failed. Please try again." },
-        { status: 400 }
-      );
+    if (!isLocalhost) {
+      const isRecaptchaValid = await verifyRecaptcha(recaptchaToken);
+
+      if (!isRecaptchaValid) {
+        return NextResponse.json(
+          { error: "reCAPTCHA verification failed. Please try again." },
+          { status: 400 }
+        );
+      }
     }
 
     // Check if Resend API key is available
@@ -75,8 +82,8 @@ export async function POST(request: NextRequest) {
 
     // Send email using Resend with improved deliverability
     const { data, error } = await resend.emails.send({
-      from: "Sergii from Create Website 4U <www.createwebsite4u.com@gmail.com>", // Use your Gmail
-      // from: "Sergii from Create Website 4U <contact@createwebsite4u.com>", // Use your verified domain
+      // from: "Sergii from Create Website 4U <www.createwebsite4u.com@gmail.com>", // Use your Gmail
+      from: "Sergii from Create Website 4U <no-reply@createwebsite4u.com>", // Use your verified domain
       // from: "Sergii from Create Website 4U <onboarding@resend.dev>", // Use Resend's default domain
       to: ["www.createwebsite4u.com@gmail.com"],
       replyTo: email, // Important: allows direct replies to the sender

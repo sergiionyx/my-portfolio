@@ -39,10 +39,10 @@ export default function ContactForm() {
 
   // Load reCAPTCHA v3 script
   useEffect(() => {
-    // Skip reCAPTCHA on localhost
-    if (isLocalhost) {
-      return;
-    }
+    // Skip reCAPTCHA on localhost (comment out to test locally)
+    // if (isLocalhost) {
+    //   return;
+    // }
 
     // Check if script is already loaded
     if (window.grecaptcha) {
@@ -98,21 +98,21 @@ export default function ContactForm() {
       let recaptchaToken = "";
 
       // Get reCAPTCHA token (skip on localhost)
-      if (!isLocalhost) {
-        if (!window.grecaptcha) {
-          throw new Error("reCAPTCHA not loaded");
-        }
-
-        const siteKey =
-          process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
-          "6LeGF2orAAAAACn0ayaUNhhsmQHqbnp3arca_gsf";
-
-        recaptchaToken = await window.grecaptcha.execute(siteKey, {
-          action: "submit",
-        });
-      } else {
-        recaptchaToken = "localhost-development";
+      // if (!isLocalhost) {
+      if (!window.grecaptcha) {
+        throw new Error("reCAPTCHA not loaded");
       }
+
+      const siteKey =
+        process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
+        "6LeGF2orAAAAACn0ayaUNhhsmQHqbnp3arca_gsf";
+
+      recaptchaToken = await window.grecaptcha.execute(siteKey, {
+        action: "submit",
+      });
+      // } else {
+      //   recaptchaToken = "localhost-development";
+      // }
 
       // Send form data
       const response = await fetch("/api/contact", {
