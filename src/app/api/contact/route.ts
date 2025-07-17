@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import dns from "dns";
+import { promisify } from "util";
+
+const resolveMx = promisify(dns.resolveMx);
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -42,6 +46,62 @@ export async function POST(request: NextRequest) {
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: "All fields are required" },
+        { status: 400 }
+      );
+    }
+
+    // Validate field lengths
+    if (name.length < 2 || name.length > 30) {
+      return NextResponse.json(
+        { error: "Name must be between 2 and 50 characters" },
+        { status: 400 }
+      );
+    }
+
+    if (email.length > 50) {
+      return NextResponse.json(
+        { error: "Email must be 50 characters or less" },
+        { status: 400 }
+      );
+    }
+
+    // Email format validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address" },
+        { status: 400 }
+      );
+    }
+
+    // Additional email validation
+    if (email.includes("..") || email.startsWith(".") || email.endsWith(".")) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address" },
+        { status: 400 }
+      );
+    }
+
+    // Check if email domain has valid MX records
+    try {
+      const domain = email.split("@")[1];
+      const mxRecords = await resolveMx(domain);
+      if (!mxRecords || mxRecords.length === 0) {
+        return NextResponse.json(
+          { error: "This email domain does not accept emails" },
+          { status: 400 }
+        );
+      }
+    } catch (error) {
+      return NextResponse.json(
+        { error: "Invalid email domain" },
+        { status: 400 }
+      );
+    }
+
+    if (message.length < 10 || message.length > 1000) {
+      return NextResponse.json(
+        { error: "Message must be between 10 and 1000 characters" },
         { status: 400 }
       );
     }

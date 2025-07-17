@@ -91,6 +91,16 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setSubmitStatus({
+        type: "error",
+        message: "Please enter a valid email address.",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: "" });
 
@@ -179,6 +189,8 @@ export default function ContactForm() {
           value={formData.name}
           onChange={handleChange}
           required
+          maxLength={30}
+          minLength={2}
           className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-gray-900 dark:text-white"
         />
       </div>
@@ -197,6 +209,7 @@ export default function ContactForm() {
           value={formData.email}
           onChange={handleChange}
           required
+          maxLength={50}
           className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-gray-900 dark:text-white"
         />
       </div>
@@ -215,6 +228,8 @@ export default function ContactForm() {
           onChange={handleChange}
           rows={4}
           required
+          maxLength={1000}
+          minLength={10}
           className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-vertical text-gray-900 dark:text-white"
         />
       </div>
