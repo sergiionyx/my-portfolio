@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import dns from "dns";
-import { promisify } from "util";
-
-const resolveMx = promisify(dns.resolveMx);
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Commented out DNS email domain lookup
+// import dns from "dns";
+// import { promisify } from "util";
+
+// const resolveMx = promisify(dns.resolveMx);
 
 // Verify reCAPTCHA token
 async function verifyRecaptcha(token: string) {
@@ -82,21 +84,68 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if email domain has valid MX records
+
+    // // Check if email domain has valid MX records
+    // try{
+    //   const domain = email.split("@")[1];
+    //   console.log("Checking MX records for domain:", domain);
+    //   const mxRecords = await resolveMx(domain);
+    //   console.log("MX records found:", mxRecords);
+    //   if (!mxRecords || mxRecords.length === 0) {
+    //     return NextResponse.json(
+    //       { error: "This email domain does not accept emails" },
+    //       { status: 400 }
+    //     );
+    //   }
+    // } catch (error) {
+    //   console.error("DNS MX lookup error:", error);
+    //   return NextResponse.json(
+    //     { error: "Invalid email" },
+    //     { status: 400 }
+    //   );
+
+
+    // Verify email with ZeroBounce
     try {
-      const domain = email.split("@")[1];
-      const mxRecords = await resolveMx(domain);
-      if (!mxRecords || mxRecords.length === 0) {
-        return NextResponse.json(
-          { error: "This email domain does not accept emails" },
-          { status: 400 }
+      const apiKey = process.env.ZEROBOUNCE_API_KEY;
+      if (!apiKey) {
+        console.error("ZEROBOUNCE_API_KEY environment variable is missing");
+        // Continue without email verification if API key is missing
+      } else {
+        console.log("Verifying email with ZeroBounce:", email);
+        const response = await fetch(
+          `https://api.zerobounce.net/v2/validate?api_key=${apiKey}&email=${encodeURIComponent(email)}`
         );
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log("ZeroBounce response:", data);
+
+          if (
+            data.status === "invalid" ||
+            data.status === "spamtrap" ||
+            data.status === "abuse"
+          ) {
+            return NextResponse.json(
+              { error: "Please enter a valid email address" },
+              { status: 400 }
+            );
+          }
+
+          if (data.status === "catch-all") {
+            return NextResponse.json(
+              {
+                error:
+                  "Please use a specific email address, not a catch-all domain",
+              },
+              { status: 400 }
+            );
+          }
+        }
       }
     } catch (error) {
-      return NextResponse.json(
-        { error: "Invalid email domain" },
-        { status: 400 }
-      );
+      console.error("ZeroBounce verification error:", error);
+      // Continue without email verification if service is down
     }
 
     if (message.length < 10 || message.length > 1000) {
