@@ -5,11 +5,17 @@ Allow: /
 # Sitemap location
 Sitemap: https://createwebsite4u.com/sitemap.xml
 
-# Disallow admin and API routes
-Disallow: /api/
-Disallow: /admin/
-Disallow: /_next/
-Disallow: /static/
-
 # Crawl-delay
-Crawl-delay: 10 
+Crawl-delay: 1
+
+# Disallow admin areas (if any)
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Allow important pages
+Allow: /services
+Allow: /projects
+Allow: /pricing
+Allow: /contact
+Allow: /about 

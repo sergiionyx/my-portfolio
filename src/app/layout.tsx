@@ -2,22 +2,50 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ThemeToggle from "./components/ThemeToggle";
+import StructuredData from "./components/StructuredData";
+import BreadcrumbSchema from "./components/BreadcrumbSchema";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title:
-    "Small Business Website Development | Professional Web Design Services",
+  title: {
+    default:
+      "Charlotte Web Developer | Small Business Website Development Services",
+    template: "%s | Create Website 4U",
+  },
   description:
-    "Expert small business website development services. Get a modern, mobile-friendly website that helps your business grow. Affordable, professional web design for small businesses.",
+    "Expert small business website development services in Charlotte, NC. Get a modern, mobile-friendly website that helps your business grow. Affordable, professional web design for Charlotte businesses. Free consultation available.",
   metadataBase: new URL("https://createwebsite4u.com"),
-  keywords:
-    "small business website, web development, professional web design, affordable website, business website, mobile-friendly website, local business website",
+  keywords: [
+    "small business website",
+    "web development",
+    "professional web design",
+    "affordable website",
+    "business website",
+    "mobile-friendly website",
+    "local business website",
+    "website developer",
+    "custom website design",
+    "responsive web design",
+    "e-commerce website",
+    "SEO optimization",
+    "website maintenance",
+    "Charlotte web developer",
+    "North Carolina web design",
+  ],
+  authors: [{ name: "Sergii Onyx" }],
+  creator: "Sergii Onyx",
+  publisher: "Create Website 4U",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     title:
-      "Small Business Website Development | Professional Web Design Services",
+      "Charlotte Web Developer | Small Business Website Development Services",
     description:
-      "Expert small business website development services. Get a modern, mobile-friendly website that helps your business grow. Affordable, professional web design for small businesses.",
+      "Expert small business website development services in Charlotte, NC. Get a modern, mobile-friendly website that helps your business grow. Affordable, professional web design for Charlotte businesses.",
     url: "https://createwebsite4u.com",
     siteName: "Create Website 4U",
     locale: "en_US",
@@ -34,10 +62,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Small Business Website Development | Professional Web Design Services",
+      "Charlotte Web Developer | Small Business Website Development Services",
     description:
-      "Expert small business website development services. Get a modern, mobile-friendly website that helps your business grow.",
+      "Expert small business website development services in Charlotte, NC. Get a modern, mobile-friendly website that helps your business grow.",
     images: ["/og-image.jpg"],
+    creator: "@createwebsite4u",
   },
   robots: {
     index: true,
@@ -57,9 +86,24 @@ export const metadata: Metadata = {
     canonical: "https://createwebsite4u.com",
   },
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png" },
+      {
+        url: "/apple-touch-icon-180x180.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+    other: [
+      { rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#2563eb" },
+    ],
   },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
@@ -76,9 +120,15 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        <StructuredData />
+        <BreadcrumbSchema />
       </head>
       <body className={inter.className}>
-        <nav className="fixed w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm z-50 shadow-sm">
+        <nav
+          className="fixed w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm z-50 shadow-sm"
+          role="navigation"
+          aria-label="Main navigation"
+        >
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between h-16">
               <a
