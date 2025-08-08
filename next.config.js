@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === "production";
 
 const nextConfig = {
   reactStrictMode: true,
@@ -8,13 +8,14 @@ const nextConfig = {
     if (!isProd) return []; // no CSP in dev; avoids inline/eval errors
     return [
       {
-        source: '/(.*)',
+        source: "/(.*)",
         headers: [
           {
-            key: 'Content-Security-Policy',
+            key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' https://www.google.com https://www.gstatic.com",
+              // Allow inline for Next runtime + JSON-LD; keep third-parties minimal
+              "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: https:",
               "font-src 'self' https://fonts.gstatic.com",
@@ -23,12 +24,12 @@ const nextConfig = {
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self'",
-            ].join('; ')
-          }
-        ]
-      }
+            ].join("; "),
+          },
+        ],
+      },
     ];
-  }
+  },
 };
 
 module.exports = nextConfig;
