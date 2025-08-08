@@ -22,16 +22,36 @@ const projects = [
     liveUrl: "https://locksmith-two.vercel.app/",
     githubUrl: "#",
   },
-  // {
-  //   id: 3,
-  //   title: "Portfolio Template",
-  //   description:
-  //     "Clean and modern portfolio template for creative professionals with smooth animations.",
-  //   image: "/images/portfolio-project.jpg", // Add your actual image path
-  //   technologies: ["HTML", "CSS", "JavaScript", "GSAP"],
-  //   liveUrl: "#",
-  //   githubUrl: "#",
-  // },
+  {
+    id: 3,
+    title: "Placeholder for Your Project!",
+    description:
+      "50% discount on this project will be applied with all the selected features of the website package",
+    image: "/images/50-percent-off.jpg", // Add your actual image path
+    technologies: ["HTML", "CSS", "JavaScript", "GSAP"],
+    liveUrl: "#contact",
+    githubUrl: "#",
+  },
+  {
+    id: 4,
+    title: "Placeholder for Your Project!",
+    description:
+      "25% discount on this project will be applied with all the selected features of the website package",
+    image: "/images/25-percent-off.jpg", // Add your actual image path
+    technologies: ["HTML", "CSS", "JavaScript", "GSAP"],
+    liveUrl: "#contact",
+    githubUrl: "#",
+  },
+  {
+    id: 5,
+    title: "Placeholder for Your Project!",
+    description:
+      "10% discount on this project will be applied with all the selected features of the website package",
+    image: "/images/10-percent-off.jpg", // Add your actual image path
+    technologies: ["HTML", "CSS", "JavaScript", "GSAP"],
+    liveUrl: "#contact",
+    githubUrl: "#",
+  },
   // {
   //   id: 4,
   //   title: "Business Landing Page",
@@ -304,92 +324,74 @@ export default function Home() {
           </h2>
 
           {/* Main Packages Table */}
-          <div className="overflow-x-auto mb-16">
-            <table className="w-full bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+          <div className="overflow-x-auto mb-16 -mx-6 sm:mx-0">
+            <table className="w-full min-w-[400px] max-w-4xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-lg">
               <thead className="bg-gray-200 dark:bg-gray-900">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
+                  <th className="px-4 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
                     Package
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
+                  <th className="px-0 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
                     Perfect For
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
+                  <th className="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
                     What You Get
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
+                  <th className="px-2 sm:px-4 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
                     Price (USD)
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                  <td className="px-6 py-4">
+                  <td className="px-4 sm:px-4 py-4 text-sm text-gray-700 dark:text-gray-300">
                     <span className="font-bold text-blue-600 dark:text-blue-400">
                       Starter
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <td className="px-0 sm:px-4 py-4 text-sm text-gray-700 dark:text-gray-300">
                     Freelancers, solo service providers
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <td className="px-2 sm:px-4 py-4 text-sm text-gray-700 dark:text-gray-300">
                     1–3 page website
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-2 sm:px-4 py-4">
                     <span className="font-bold text-green-600 dark:text-green-400">
                       $700–$1,200
                     </span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                  <td className="px-6 py-4">
-                    <span className="font-bold text-blue-600 dark:text-blue-400">
-                      Business
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-                    Small/local businesses, nonprofits
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-                    4–7 page website
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className="font-bold text-green-600 dark:text-green-400">
-                      $1,500–$2,800
-                    </span>
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                  <td className="px-6 py-4">
+                  <td className="px-4 sm:px-4 py-4 text-sm text-gray-700 dark:text-gray-300">
                     <span className="font-bold text-blue-600 dark:text-blue-400">
                       Premium
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <td className="px-0 py-4 text-sm text-gray-700 dark:text-gray-300">
                     Agencies, real estate, legal, education
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <td className="px-2 py-4 text-sm text-gray-700 dark:text-gray-300">
                     8–12 page website + blog
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-2 py-4">
                     <span className="font-bold text-green-600 dark:text-green-400">
                       $3,000–$5,500
                     </span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                  <td className="px-6 py-4">
+                  <td className="px-4 sm:px-4 py-4 text-sm text-gray-700 dark:text-gray-300">
                     <span className="font-bold text-blue-600 dark:text-blue-400">
                       Web App
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <td className="px-0 py-4 text-sm text-gray-700 dark:text-gray-300">
                     SaaS, platforms, client portals
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <td className="px-2 py-4 text-sm text-gray-700 dark:text-gray-300">
                     Custom web application
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-2 sm:px-4 py-4">
                     <span className="font-bold text-green-600 dark:text-green-400">
                       $6,000+
                     </span>
@@ -403,23 +405,20 @@ export default function Home() {
           <h3 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">
             What's Included in Each Package
           </h3>
-          <div className="overflow-x-auto mb-16">
-            <table className="w-full bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+          <div className="overflow-x-auto mb-16 -mx-6 sm:mx-0">
+            <table className="w-full min-w-[400px] max-w-4xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-lg">
               <thead className="bg-gray-200 dark:bg-gray-900">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
+                  <th className="px-6 sm:px-6 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
                     Feature
                   </th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-white">
+                  <th className="px-0 sm:px-6 py-2 sm:py-4 text-center text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
                     Starter
                   </th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-white">
-                    Business
-                  </th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-white">
+                  <th className="px-0 sm:px-6 py-2 sm:py-4 text-center text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
                     Premium
                   </th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-white">
+                  <th className="px-0 sm:px-6 py-2 sm:py-4 text-center text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
                     Web App
                   </th>
                 </tr>
@@ -427,70 +426,82 @@ export default function Home() {
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-                    Mobile-friendly design
+                    Mobile design
                   </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                  <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                  <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                  <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-                    Fast loading website
+                    Fast loading
                   </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                  <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                  <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                  <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                     Contact form
                   </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                  <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                  <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                  <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                     Search engine optimization
                   </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                  <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                  <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                  <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -498,16 +509,19 @@ export default function Home() {
                     Website hosting setup
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -515,33 +529,53 @@ export default function Home() {
                     Custom design & navigation
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                    <span className="text-gray-400 text-xl">—</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
-                    Blog or content management
+                    Image gallery
                   </td>
                   <td className="px-6 py-4 text-center">
                     <span className="text-gray-400 text-xl">—</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-yellow-500 text-xl">🔄</span>
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Google Maps integration
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                    <span className="text-gray-400 text-xl">—</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -555,10 +589,9 @@ export default function Home() {
                     <span className="text-gray-400 text-xl">—</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-gray-400 text-xl">—</span>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -572,10 +605,41 @@ export default function Home() {
                     <span className="text-gray-400 text-xl">—</span>
                   </td>
                   <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    Payment setup (Stripe, PayPal, etc.)
+                  </td>
+                  <td className="px-6 py-4 text-center">
                     <span className="text-gray-400 text-xl">—</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-xl">✅</span>
+                    <span className="text-gray-400 text-xl">—</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                    API integration
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-gray-400 text-xl">—</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-gray-400 text-xl">—</span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-base sm:text-xl">
+                      ✅
+                    </span>
                   </td>
                 </tr>
               </tbody>
