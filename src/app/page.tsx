@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import ContactForm from "./components/ContactForm";
+import CollapsibleSticky from "./components/CollapsibleSticky";
 
 // Sample project data - you can replace this with your actual projects
 const projects = [
@@ -82,6 +82,94 @@ const projects = [
   //   liveUrl: "#",
   //   githubUrl: "#",
   // },
+];
+
+// Reusable Add-Ons data to keep mobile and desktop in sync
+const addOns = [
+  {
+    title: "CMS Integration",
+    icon: "✅",
+    iconColorClass: "text-green-500",
+    description: "Sanity, Strapi, etc.",
+    price: "+$300–$1,000",
+  },
+  {
+    title: "Image Carousel/Gallery",
+    icon: "🖼️",
+    iconColorClass: "text-blue-500",
+    description: "Slider functionality",
+    price: "+$100–$300",
+  },
+  {
+    title: "Analytics Setup",
+    icon: "📈",
+    iconColorClass: "text-purple-500",
+    description: "GA4, Meta Pixel",
+    price: "+$100–$200",
+  },
+  {
+    title: "Copywriting",
+    icon: "🧠",
+    iconColorClass: "text-yellow-500",
+    description: "Website pages content",
+    price: "+$200–$800",
+  },
+  {
+    title: "Google Maps",
+    icon: "📍",
+    iconColorClass: "text-red-500",
+    description: "Location embed",
+    price: "+$50–$150",
+  },
+  {
+    title: "Multi-language",
+    icon: "🌐",
+    iconColorClass: "text-indigo-500",
+    description: "i18n support",
+    price: "+$300–$700",
+  },
+  {
+    title: "Payment Integration",
+    icon: "💳",
+    iconColorClass: "text-green-500",
+    description: "Stripe or PayPal",
+    price: "+$300–$600",
+  },
+  {
+    title: "User Login & Access",
+    icon: "🔐",
+    iconColorClass: "text-orange-500",
+    description: "Role-based access",
+    price: "+$800–$1,500",
+  },
+  {
+    title: "Custom Admin Panel",
+    icon: "🗃️",
+    iconColorClass: "text-teal-500",
+    description: "CMS UI",
+    price: "+$1,000–$2,000",
+  },
+  {
+    title: "API Integration",
+    icon: "🔄",
+    iconColorClass: "text-blue-500",
+    description: "External services",
+    price: "+$400–$1,000",
+  },
+  {
+    title: "Monthly Support",
+    icon: "🧪",
+    iconColorClass: "text-purple-500",
+    description: "Maintenance",
+    price: "+$100–$500/mo",
+  },
+  {
+    title: "SEO + Marketing",
+    icon: "🚀",
+    iconColorClass: "text-yellow-500",
+    description: "Optimization help",
+    price: "+$500–$2,000/mo",
+  },
 ];
 
 export default function Home() {
@@ -280,38 +368,78 @@ export default function Home() {
       {/* Projects Section */}
       <section id="projects" className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
-            Recent Business Websites
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <a
-                key={project.id}
-                href={project.liveUrl}
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 inline-flex items-center text-sm"
-                target="_blank"
-              >
-                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg overflow-hidden hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transition duration-300 group flex flex-col h-full">
-                  <div className="relative h-60 bg-gray-100 dark:bg-gray-700 overflow-hidden">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition duration-300"
-                    />
+          {/* Mobile/Tablet: collapsible */}
+          <CollapsibleSticky
+            title={"Recent Business Websites"}
+            containerClassName="bg-gray-50 dark:bg-gray-800"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {projects.map((project) => (
+                <a
+                  key={project.id}
+                  href={project.liveUrl}
+                  className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 inline-flex items-center text-sm"
+                  target="_blank"
+                >
+                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg overflow-hidden hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transition duration-300 group flex flex-col h-full">
+                    <div className="relative h-60 bg-gray-100 dark:bg-gray-700 overflow-hidden">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition duration-300"
+                      />
+                    </div>
+                    <div className="p-4 flex-1 flex flex-col">
+                      <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm flex-1">
+                        {project.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="p-4 flex-1 flex flex-col">
-                    <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm flex-1">
-                      {project.description}
-                    </p>
+                </a>
+              ))}
+            </div>
+          </CollapsibleSticky>
+
+          {/* Desktop: always expanded */}
+          <div className="hidden lg:block">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">
+              Recent Business Websites
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project) => (
+                <a
+                  key={project.id}
+                  href={project.liveUrl}
+                  className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 inline-flex items-center text-sm"
+                  target="_blank"
+                >
+                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg overflow-hidden hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] transition duration-300 group flex flex-col h-full">
+                    <div className="relative h-60 bg-gray-100 dark:bg-gray-700 overflow-hidden">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition duration-300"
+                      />
+                    </div>
+                    <div className="p-4 flex-1 flex flex-col">
+                      <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm flex-1">
+                        {project.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </a>
-            ))}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -402,23 +530,296 @@ export default function Home() {
           </div>
 
           {/* Features Comparison */}
-          <h3 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+          {/* Mobile/Tablet: collapsible sticky */}
+          <div className="lg:hidden">
+            <CollapsibleSticky
+              title={"What's Included in Each Package"}
+              containerClassName="bg-gray-50 dark:bg-gray-800"
+            >
+              <div className="overflow-x-auto mb-6 -mx-6 sm:mx-0">
+                <table className="w-full min-w-[400px] max-w-4xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+                  <thead className="bg-gray-200 dark:bg-gray-900">
+                    <tr>
+                      <th className="px-6 sm:px-6 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
+                        Feature
+                      </th>
+                      <th className="px-0 sm:px-6 py-2 sm:py-4 text-center text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
+                        Starter
+                      </th>
+                      <th className="px-0 sm:px-6 py-2 sm:py-4 text-center text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
+                        Premium
+                      </th>
+                      <th className="px-0 sm:px-6 py-2 sm:py-4 text-center text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
+                        Web App
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        Mobile design
+                      </td>
+                      <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                      <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                      <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        Fast loading
+                      </td>
+                      <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                      <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                      <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                    </tr>
+                    {/* Remaining rows identical to desktop */}
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        Contact form
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        Search engine optimization
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        Website hosting setup
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        Custom design & navigation
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-gray-400 text-base sm:text-xl">
+                          —
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        Image gallery
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-gray-400 text-base sm:text-xl">
+                          —
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        Google Maps integration
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-gray-400 text-base sm:text-xl">
+                          —
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        Admin dashboard
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-gray-400 text-base sm:text-xl">
+                          —
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-gray-400 text-base sm:text-xl">
+                          —
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        User login system
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-gray-400 text-base sm:text-xl">
+                          —
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-gray-400 text-base sm:text-xl">
+                          —
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        Payment setup (Stripe, PayPal, etc.)
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-gray-400 text-base sm:text-xl">
+                          —
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-gray-400 text-base sm:text-xl">
+                          —
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                      <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                        API integration
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-gray-400 text-base sm:text-xl">
+                          —
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-gray-400 text-base sm:text-xl">
+                          —
+                        </span>
+                      </td>
+                      <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
+                        <span className="text-green-500 text-base sm:text-xl">
+                          ✅
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </CollapsibleSticky>
+          </div>
+
+          {/* Desktop: existing table remains always visible */}
+          <h3 className="hidden lg:block text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">
             What's Included in Each Package
           </h3>
-          <div className="overflow-x-auto mb-16 -mx-6 sm:mx-0">
+          <div className="hidden lg:block overflow-x-auto mb-16 -mx-6 sm:mx-0">
             <table className="w-full min-w-[400px] max-w-4xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-lg">
               <thead className="bg-gray-200 dark:bg-gray-900">
                 <tr>
-                  <th className="px-6 sm:px-6 py-2 sm:py-4 text-left text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900 dark:text-white">
                     Feature
                   </th>
-                  <th className="px-0 sm:px-6 py-2 sm:py-4 text-center text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-white">
                     Starter
                   </th>
-                  <th className="px-0 sm:px-6 py-2 sm:py-4 text-center text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-white">
                     Premium
                   </th>
-                  <th className="px-0 sm:px-6 py-2 sm:py-4 text-center text-xs sm:text-sm font-semibold text-gray-900 dark:text-white">
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900 dark:text-white">
                     Web App
                   </th>
                 </tr>
@@ -428,80 +829,56 @@ export default function Home() {
                   <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                     Mobile design
                   </td>
-                  <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
-                  <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
-                  <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                     Fast loading
                   </td>
-                  <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
-                  <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
-                  <td className="px-1 sm:px-6 py-2 sm:py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                     Contact form
                   </td>
-                  <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
-                  <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
-                  <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
                   <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
                     Search engine optimization
                   </td>
-                  <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
-                  <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
-                  <td className="px-0 sm:px-6 py-2 sm:py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                  <td className="px-6 py-4 text-center">
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -509,19 +886,13 @@ export default function Home() {
                     Website hosting setup
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -532,14 +903,10 @@ export default function Home() {
                     <span className="text-gray-400 text-xl">—</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -550,14 +917,10 @@ export default function Home() {
                     <span className="text-gray-400 text-xl">—</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -568,14 +931,10 @@ export default function Home() {
                     <span className="text-gray-400 text-xl">—</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -589,9 +948,7 @@ export default function Home() {
                     <span className="text-gray-400 text-xl">—</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -605,9 +962,7 @@ export default function Home() {
                     <span className="text-gray-400 text-xl">—</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -621,9 +976,7 @@ export default function Home() {
                     <span className="text-gray-400 text-xl">—</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -637,9 +990,7 @@ export default function Home() {
                     <span className="text-gray-400 text-xl">—</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-green-500 text-base sm:text-xl">
-                      ✅
-                    </span>
+                    <span className="text-green-500 text-xl">✅</span>
                   </td>
                 </tr>
               </tbody>
@@ -647,189 +998,64 @@ export default function Home() {
           </div>
 
           {/* Add-Ons Section */}
-          <h3 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+          {/* Mobile/Tablet: collapsible */}
+          <div className="lg:hidden">
+            <CollapsibleSticky
+              title={"Add-Ons (Customize Any Package)"}
+              containerClassName="bg-gray-50 dark:bg-gray-800"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                {addOns.map((item) => (
+                  <div
+                    key={item.title}
+                    className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg"
+                  >
+                    <div className="flex items-center mb-3">
+                      <span className={`${item.iconColorClass} text-xl mr-2`}>
+                        {item.icon}
+                      </span>
+                      <h4 className="font-semibold text-gray-900 dark:text-white">
+                        {item.title}
+                      </h4>
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                      {item.description}
+                    </p>
+                    <p className="font-bold text-green-600 dark:text-green-400">
+                      {item.price}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </CollapsibleSticky>
+          </div>
+
+          {/* Desktop heading and grid */}
+          <h3 className="hidden lg:block text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">
             Add-Ons (Customize Any Package)
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-              <div className="flex items-center mb-3">
-                <span className="text-green-500 text-xl mr-2">✅</span>
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  CMS Integration
-                </h4>
+          <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {addOns.map((item) => (
+              <div
+                key={item.title}
+                className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg"
+              >
+                <div className="flex items-center mb-3">
+                  <span className={`${item.iconColorClass} text-xl mr-2`}>
+                    {item.icon}
+                  </span>
+                  <h4 className="font-semibold text-gray-900 dark:text-white">
+                    {item.title}
+                  </h4>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                  {item.description}
+                </p>
+                <p className="font-bold text-green-600 dark:text-green-400">
+                  {item.price}
+                </p>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                Sanity, Strapi, etc.
-              </p>
-              <p className="font-bold text-green-600 dark:text-green-400">
-                +$300–$1,000
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-              <div className="flex items-center mb-3">
-                <span className="text-blue-500 text-xl mr-2">🖼️</span>
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  Image Carousel/Gallery
-                </h4>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                Slider functionality
-              </p>
-              <p className="font-bold text-green-600 dark:text-green-400">
-                +$100–$300
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-              <div className="flex items-center mb-3">
-                <span className="text-purple-500 text-xl mr-2">📈</span>
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  Analytics Setup
-                </h4>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                GA4, Meta Pixel
-              </p>
-              <p className="font-bold text-green-600 dark:text-green-400">
-                +$100–$200
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-              <div className="flex items-center mb-3">
-                <span className="text-yellow-500 text-xl mr-2">🧠</span>
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  Copywriting
-                </h4>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                Website pages content
-              </p>
-              <p className="font-bold text-green-600 dark:text-green-400">
-                +$200–$800
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-              <div className="flex items-center mb-3">
-                <span className="text-red-500 text-xl mr-2">📍</span>
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  Google Maps
-                </h4>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                Location embed
-              </p>
-              <p className="font-bold text-green-600 dark:text-green-400">
-                +$50–$150
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-              <div className="flex items-center mb-3">
-                <span className="text-indigo-500 text-xl mr-2">🌐</span>
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  Multi-language
-                </h4>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                i18n support
-              </p>
-              <p className="font-bold text-green-600 dark:text-green-400">
-                +$300–$700
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-              <div className="flex items-center mb-3">
-                <span className="text-green-500 text-xl mr-2">💳</span>
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  Payment Integration
-                </h4>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                Stripe or PayPal
-              </p>
-              <p className="font-bold text-green-600 dark:text-green-400">
-                +$300–$600
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-              <div className="flex items-center mb-3">
-                <span className="text-orange-500 text-xl mr-2">🔐</span>
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  User Login & Access
-                </h4>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                Role-based access
-              </p>
-              <p className="font-bold text-green-600 dark:text-green-400">
-                +$800–$1,500
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-              <div className="flex items-center mb-3">
-                <span className="text-teal-500 text-xl mr-2">🗃️</span>
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  Custom Admin Panel
-                </h4>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                CMS UI
-              </p>
-              <p className="font-bold text-green-600 dark:text-green-400">
-                +$1,000–$2,000
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-              <div className="flex items-center mb-3">
-                <span className="text-blue-500 text-xl mr-2">🔄</span>
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  API Integration
-                </h4>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                External services
-              </p>
-              <p className="font-bold text-green-600 dark:text-green-400">
-                +$400–$1,000
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-              <div className="flex items-center mb-3">
-                <span className="text-purple-500 text-xl mr-2">🧪</span>
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  Monthly Support
-                </h4>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                Maintenance
-              </p>
-              <p className="font-bold text-green-600 dark:text-green-400">
-                +$100–$500/mo
-              </p>
-            </div>
-
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
-              <div className="flex items-center mb-3">
-                <span className="text-yellow-500 text-xl mr-2">🚀</span>
-                <h4 className="font-semibold text-gray-900 dark:text-white">
-                  SEO + Marketing
-                </h4>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                Optimization help
-              </p>
-              <p className="font-bold text-green-600 dark:text-green-400">
-                +$500–$2,000/mo
-              </p>
-            </div>
+            ))}
           </div>
 
           {/* CTA Section */}
