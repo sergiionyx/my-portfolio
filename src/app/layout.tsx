@@ -185,7 +185,7 @@ export default function RootLayout({
             "/icons/favicon-32x32-7.png",
             "/icons/favicon-32x32-8.png",
           ]}
-          intervalMs={230}
+          intervalMs={1000}
         />
         {children}
         <footer className="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 py-8">

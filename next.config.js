@@ -14,7 +14,7 @@ const nextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              // Allow inline for Next runtime + JSON-LD; keep third-parties minimal
+              // Allow inline for Next runtime + JSON-LD
               "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: https:",
