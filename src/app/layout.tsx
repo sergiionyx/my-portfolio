@@ -4,6 +4,7 @@ import "./globals.css";
 import ThemeToggle from "./components/ThemeToggle";
 import StructuredData from "./components/StructuredData";
 import BreadcrumbSchema from "./components/BreadcrumbSchema";
+import AnimatedFavicon from "./components/AnimatedFavicon";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -87,9 +88,9 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "icons/favicon.ico" },
+      { url: "icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "icons/favicon-32x32-1.png", sizes: "32x32", type: "image/png" },
     ],
     apple: [
       { url: "/apple-touch-icon.png" },
@@ -114,6 +115,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Explicit favicon element for animation target */}
+        <link id="favicon" rel="icon" href="/icons/favicon-16x16.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -170,6 +173,20 @@ export default function RootLayout({
             </div>
           </div>
         </nav>
+        {/* Animated favicon frames under /public/icons */}
+        <AnimatedFavicon
+          frames={[
+            "/icons/favicon-32x32-1.png",
+            "/icons/favicon-32x32-2.png",
+            "/icons/favicon-32x32-3.png",
+            "/icons/favicon-32x32-4.png",
+            "/icons/favicon-32x32-5.png",
+            "/icons/favicon-32x32-6.png",
+            "/icons/favicon-32x32-7.png",
+            "/icons/favicon-32x32-8.png",
+          ]}
+          intervalMs={230}
+        />
         {children}
         <footer className="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 py-8">
           <div className="container mx-auto px-4">

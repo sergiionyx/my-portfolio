@@ -191,6 +191,7 @@ export default function ContactForm() {
           required
           maxLength={30}
           minLength={2}
+          autoComplete="name"
           className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-gray-900 dark:text-white"
         />
       </div>
@@ -210,6 +211,7 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           maxLength={50}
+          autoComplete="email"
           className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none text-gray-900 dark:text-white"
         />
       </div>
