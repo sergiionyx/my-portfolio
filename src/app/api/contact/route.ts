@@ -84,7 +84,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-
     // // Check if email domain has valid MX records
     // try{
     //   const domain = email.split("@")[1];
@@ -103,7 +102,6 @@ export async function POST(request: NextRequest) {
     //     { error: "Invalid email" },
     //     { status: 400 }
     //   );
-
 
     // Verify email with ZeroBounce
     try {
@@ -250,10 +248,21 @@ Quick Reply: Reply to this email to respond directly to ${name}.
       );
     }
 
-    return NextResponse.json(
+    const response = NextResponse.json(
       { message: "Email sent successfully" },
       { status: 200 }
     );
+
+    // Gate success page access with a short-lived, HTTP-only cookie
+    response.cookies.set("contact_success", "1", {
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 5, // 5 seconds
+    });
+    // maxAge: 60 * 5, // 5 minutes
+
+    return response;
   } catch (error) {
     console.error("API error:", error);
     return NextResponse.json(

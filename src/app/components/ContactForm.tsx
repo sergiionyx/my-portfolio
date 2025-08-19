@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 declare global {
   interface Window {
@@ -14,6 +15,7 @@ declare global {
 }
 
 export default function ContactForm() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -139,11 +141,14 @@ export default function ContactForm() {
       const data = await response.json();
 
       if (response.ok) {
-        setSubmitStatus({
-          type: "success",
-          message: "Thank you! Your message has been sent successfully.",
-        });
-        setFormData({ name: "", email: "", message: "" });
+        // setSubmitStatus({
+        //   type: "success",
+        //   message: "Thank you! Your message has been sent successfully.",
+        // });
+        // setFormData({ name: "", email: "", message: "" });
+        // Redirect to success page for conversion tracking (e.g., Google Ads)
+        router.push("/contact/success");
+        return;
       } else {
         setSubmitStatus({
           type: "error",
