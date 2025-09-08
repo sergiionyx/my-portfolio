@@ -15,12 +15,12 @@ const nextConfig = {
             value: [
               "default-src 'self'",
               // Allow inline for Next runtime + JSON-LD
-              "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com",
+              "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: https:",
               "font-src 'self' https://fonts.gstatic.com",
-              "connect-src 'self' https://api.zerobounce.net https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com",
-              "frame-src https://www.google.com https://www.googletagmanager.com",
+              "connect-src 'self' https://api.zerobounce.net https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net",
+              "frame-src https://www.google.com https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net",
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self'",
