@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import AdsConversion from "@/app/components/AdsConversion";
 
 export const metadata = {
   title: "Message Sent • Thank You",
@@ -14,6 +15,11 @@ export default function ContactSuccessPage() {
   }
   return (
     <main className="mx-auto max-w-2xl px-4 py-16">
+      <AdsConversion
+        sendTo="AW-17487939670/sHWiCNjArogbENaQ85JB"
+        value={1.0}
+        currency="USD"
+      />
       <div className="rounded-lg border border-green-500 bg-green-500/10 p-6 text-green-500 mt-12">
         <h1 className="mb-2 text-2xl font-bold text-green-500">Thank you!</h1>
         <p>
